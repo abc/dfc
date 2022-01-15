@@ -17,14 +17,12 @@ dfc <file path> <depth>
 
 ## Output
 
-As well as writing details to STDOUT and error messages to STDERR, a 
-text file named `output.txt` will be created in the working directory.
-This file will contain a line for each unique filename, and a number 
-representing the number of times that filename was found within the 
-directory structure.
-
-A summary is also produced, with the count of unique, duplicate and 
-total files. The summary is added to the end of the output.txt file.
+Diagnostic and error messages will be printed to STDERR. Once processing
+is fully completed, a report containing a line for each unique filename,
+and a number representing the number of times that filename was found
+within the directory structure will be printed to STDOUT. A summary is
+also produced, with the count of unique, duplicate and total files.
+This report is also printed to STDOUT.
 
 ## License
 

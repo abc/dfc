@@ -1,23 +1,17 @@
-use std::{
-    collections::HashMap,
-    env,
-    fs::{self, File},
-    io::{Error, Write},
-    time::Instant,
-};
+use std::{collections::HashMap, env, fs, time::Instant};
 
 fn main() {
     let start = Instant::now();
     let args: Vec<String> = env::args().collect();
     if args.len() < 3 {
-        println!("Count the number of occurrances of a filename in a directory structure.");
-        println!();
-        println!("Syntax: {} <file path> <depth>", args[0]);
-        println!();
-        println!("file path:\t The path to begin counting in.");
-        println!("depth:\t\t The level of recursion to use.");
-        println!("\t\t With 0, only the file path itself and no subdirectories will be checked.");
-        println!("\t\t With 1, the file path and one level of subfolders are checked, etc.");
+        eprintln!("Count the number of occurrances of a filename in a directory structure.");
+        eprintln!();
+        eprintln!("Syntax: {} <file path> <depth>", args[0]);
+        eprintln!();
+        eprintln!("file path:\t The path to begin counting in.");
+        eprintln!("depth:\t\t The level of recursion to use.");
+        eprintln!("\t\t With 0, only the file path itself and no subdirectories will be checked.");
+        eprintln!("\t\t With 1, the file path and one level of subfolders are checked, etc.");
         return;
     }
     let file_path = &args[1];
@@ -28,15 +22,6 @@ fn main() {
             return;
         }
         Ok(depth) => depth,
-    };
-
-    let output = File::create("output.txt");
-    let mut output = match output {
-        Err(error) => {
-            eprintln!("ERR: Unable to open output.txt for writing - {}", error);
-            return;
-        }
-        Ok(output) => output,
     };
 
     let mut files: HashMap<String, i32> = HashMap::new();
@@ -53,21 +38,19 @@ fn main() {
     let total_count: i32 = files.iter().map(|f| f.1).sum();
     let duplicate_count = total_count - unique_count;
 
-    let handle_write_err = |err: Error| {
-        eprintln!("ERR: Unable to write out line to output.txt - {}", err);
-    };
+    eprintln!("[{:06}s] Processing complete", start.elapsed().as_secs());
 
     for file in files {
-        writeln!(&mut output, "{}: {}", file.0, file.1).unwrap_or_else(handle_write_err);
+        println!("{}: {}", file.0, file.1);
     }
 
-    // Write summary to output file
-    writeln!(&mut output).unwrap_or_else(handle_write_err);
-    writeln!(&mut output, "SUMMARY:").unwrap_or_else(handle_write_err);
-    writeln!(&mut output).unwrap_or_else(handle_write_err);
-    writeln!(&mut output, "TOTAL: {: >15}", total_count).unwrap_or_else(handle_write_err);
-    writeln!(&mut output, "UNIQUE: {: >14}", unique_count).unwrap_or_else(handle_write_err);
-    writeln!(&mut output, "DUPLICATES: {: >10}", duplicate_count).unwrap_or_else(handle_write_err);
+    // Write summary to STDOUT.
+    println!();
+    println!("SUMMARY:");
+    println!();
+    println!("TOTAL: {: >15}", total_count);
+    println!("UNIQUE: {: >14}", unique_count);
+    println!("DUPLICATES: {: >10}", duplicate_count);
 }
 
 fn get_files(
@@ -86,7 +69,7 @@ fn get_files(
         }
     };
     let mut count = 0;
-    println!("Started processing for {}", path);
+    eprintln!("Started processing for {}", path);
     for path in paths {
         count += 1;
         let path = path;
@@ -132,7 +115,7 @@ fn get_files(
             }
         }
     }
-    println!(
+    eprintln!(
         "[{:06}s] Finished handling {} - {} files.",
         start.elapsed().as_secs(),
         path,
