@@ -69,7 +69,11 @@ fn get_files(
         }
     };
     let mut count = 0;
-    eprintln!("Started processing for {}", path);
+    eprintln!(
+        "[{:06}s] Started processing for {}",
+        start.elapsed().as_secs(),
+        path
+    );
     for path in paths {
         count += 1;
         let path = path;
