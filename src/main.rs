@@ -2,7 +2,7 @@ use std::{
     collections::HashMap,
     env,
     fs::{self, File},
-    io::Write,
+    io::{Error, Write},
     time::Instant,
 };
 
@@ -49,15 +49,25 @@ fn main() {
         Ok(_) => {}
     }
 
+    let unique_count = files.iter().len() as i32;
+    let total_count: i32 = files.iter().map(|f| f.1).sum();
+    let duplicate_count = total_count - unique_count;
+
+    let handle_write_err = |err: Error| {
+        eprintln!("ERR: Unable to write out line to output.txt - {}", err);
+    };
+
     for file in files {
-        let status = writeln!(&mut output, "{}: {}", file.0, file.1);
-        match status {
-            Err(error) => {
-                eprintln!("ERR: Unable to write out line to output.txt - {}", error);
-            }
-            Ok(_) => {}
-        }
+        writeln!(&mut output, "{}: {}", file.0, file.1).unwrap_or_else(handle_write_err);
     }
+
+    // Write summary to output file
+    writeln!(&mut output).unwrap_or_else(handle_write_err);
+    writeln!(&mut output, "SUMMARY:").unwrap_or_else(handle_write_err);
+    writeln!(&mut output).unwrap_or_else(handle_write_err);
+    writeln!(&mut output, "TOTAL: {: >15}", total_count).unwrap_or_else(handle_write_err);
+    writeln!(&mut output, "UNIQUE: {: >14}", unique_count).unwrap_or_else(handle_write_err);
+    writeln!(&mut output, "DUPLICATES: {: >10}", duplicate_count).unwrap_or_else(handle_write_err);
 }
 
 fn get_files(

@@ -23,6 +23,9 @@ This file will contain a line for each unique filename, and a number
 representing the number of times that filename was found within the 
 directory structure.
 
+A summary is also produced, with the count of unique, duplicate and 
+total files. The summary is added to the end of the output.txt file.
+
 ## License
 
 This project is licensed under either of
