@@ -15,3 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: dessant/repo-lockdown@v3
+      with:
+        pr-comment: >
+            This repository does not accept pull requests,
+            see the README for details.
