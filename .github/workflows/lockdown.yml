@@ -1,16 +1,17 @@
-name: Prevent GitHub PRs
+name: 'Prevent GitHub PRs'
 
 on:
-  pull_request:
+  issues:
+    types: opened
+  pull_request_target:
+    types: opened
 
 permissions:
+  issues: write
   pull-requests: write
 
 jobs:
   action:
     runs-on: ubuntu-latest
     steps:
-    - name: Repo Lockdown
-      uses: dessant/repo-lockdown@v3.0.0
-      with:
-        pr-comment: 'This repo does not accept PRs, please submit PRs to https://git.3e.gg/acampbell/dfc/src'
+      - uses: dessant/repo-lockdown@v3
