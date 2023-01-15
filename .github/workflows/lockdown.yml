@@ -1,0 +1,10 @@
+name: Prevent GitHub PRs
+
+on:
+  pull_request:
+
+jobs:
+  - name: Repo Lockdown
+    uses: dessant/repo-lockdown@v3.0.0
+    with:
+      pr-comment: 'This repo does not accept PRs, please submit PRs to https://git.3e.gg/acampbell/dfc/src'
