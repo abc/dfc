@@ -1,4 +1,4 @@
-# dfc - duplicate filename counter
+# dfc - duplicate filename counter test
 
 This repository is hosted on [git.3e.gg](https://git.3e.gg/acampbell/dfc) and is
 mirrored to GitHub for convenience and backup purposes.
