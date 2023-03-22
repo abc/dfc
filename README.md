@@ -1,11 +1,7 @@
 # dfc - duplicate filename counter
 
-This repository is hosted on [git.3e.gg](https://git.3e.gg/acampbell/dfc)
-and is mirrored to GitHub for convenience and backup purposes. If you would
-like to collaborate, please do so on the Gitea instance linked above. Thank you!
-
 [![Crates.io](https://img.shields.io/crates/v/dfc?logo=rust&style=flat-square)](https://crates.io/crates/dfc)
-[![Crates.io](https://img.shields.io/static/v1?label=github%20mirror&message=abc/dfc&color=blue&style=flat-square&logo=github)](https://github.com/abc/dfc)
+[![Crates.io](https://img.shields.io/static/v1?label=github&message=abc/dfc&color=blue&style=flat-square&logo=github)](https://github.com/abc/dfc)
 ![Crates.io](https://img.shields.io/crates/l/dfc?style=flat-square)
 
 dfc is a command-line utility useful for counting the number of files 
