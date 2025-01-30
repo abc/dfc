@@ -1,11 +1,11 @@
 [package]
 name = "dfc"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
-authors = ["Alastair Campbell <ac@mpbell.io>"]
+authors = ["Blake Campbell <bc@mpbell.io>"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
-repository = "https://git.3e.gg/acampbell/dfc/"
+repository = "https://github.com/abc/dfc/"
 description = "Duplicate filename counter - a program to count the number occurances of duplicate filenames within a directory structure."
 keywords = ["count", "filename", "deduplication", "duplicate", "counter"]
 categories = ["command-line-utilities", "filesystem"]
